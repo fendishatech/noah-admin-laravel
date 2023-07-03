@@ -86,3 +86,8 @@
 .hero-section-bg {
   background-image: url("../images/saving-1.jpg");
 }
+
+
+.active {
+  background-color: #fff;
+}

@@ -20,8 +20,8 @@ class RedirectLoggedInUsers
             // User is authenticated
             return redirect('/home');
         } else {
+            // User is not logged in
             return $next($request);
-            // User is not authenticated
         }
     }
 }

@@ -10,4 +10,6 @@
         @csrf
         <input class="bg-green-600 px-6 py-2 rounded text-white font-semibold" type="submit" value="Logout">
     </form>
+    <p>This is a blade component! Wow</p>
+    <x-main-button text="My Button" />
 @endsection

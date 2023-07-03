@@ -33,10 +33,6 @@
                     class="zelan text-2xl font-thin w-full py-2 mt-8 rounded-full bg-green-800 text-gray-100 focus:outline-none">
                     ግባ
                 </button>
-                <p class="mt-4 hiwua text-md text-center font-thin text-gray-600">
-                    ከዚህ በፊት የከፈቱት አካውንት ከሌለዎት
-                    <a href="/register" class="text-xl text-green-800">በዚህ ይመዝገቡ</a>።
-                </p>
             </div>
         </form>
     </div>
