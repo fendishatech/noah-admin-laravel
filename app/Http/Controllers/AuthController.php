@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -20,7 +21,7 @@ class AuthController extends Controller
         if ($validatedData) {
             if ($user && Hash::check($req->password, $user->password)) {
                 // success
-                $req->session()->put('user', $user);
+                Auth::login($user);
                 return redirect("/home");
             } else {
                 return redirect()->back()->withErrors([
@@ -32,7 +33,10 @@ class AuthController extends Controller
         }
     }
 
+
     public function logout(Request $req)
     {
+        Auth::logout();
+        return redirect('/');
     }
 }
