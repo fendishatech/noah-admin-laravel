@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('member_jobs', function (Blueprint $table) {
             $table->id();
+            $table->string("title");
+            $table->integer("exp_year");
+            $table->integer("exp_month");
+
+            $table->foreignId('member_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

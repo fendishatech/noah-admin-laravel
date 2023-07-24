@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('member_edus', function (Blueprint $table) {
             $table->id();
+            $table->string("name");
+
+            $table->foreignId('member_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

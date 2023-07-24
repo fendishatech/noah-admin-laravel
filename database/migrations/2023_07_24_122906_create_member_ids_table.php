@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('member_ids', function (Blueprint $table) {
             $table->id();
+            $table->enum("id_type", ["public", "license", "passport"]);
+            $table->string("id_number");
+            $table->string("id_img_path");
+
+            $table->foreignId('member_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

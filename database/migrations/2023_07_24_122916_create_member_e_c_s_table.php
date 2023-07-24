@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('member_e_c_s', function (Blueprint $table) {
             $table->id();
+            $table->string('first_name');
+            $table->string('middle_name');
+            $table->string('last_name');
+            $table->integer('woreda');
+            $table->integer('house_no');
+            $table->string('phone_no');
+
+            $table->foreignId('member_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

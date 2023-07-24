@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('phone_no')->unique();
             $table->string('password');
             $table->string('avatar')->nullable();
-            $table->enum('user_role', ['admin', 'user']);
+            $table->enum('user_role', ['admin', 'user', 'finance']);
             $table->string('refresh_token')->nullable();
             $table->timestamps();
         });
