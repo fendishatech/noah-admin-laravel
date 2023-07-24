@@ -5,11 +5,13 @@
 @endsection
 
 @section('content')
-    <h1 class="text-center px-6 py-2 text-4xl font-bold text-green-600">Admin Panel</h1>
-    <form action="{{ url('/logout') }}" method="post">
-        @csrf
-        <input class="bg-green-600 px-6 py-2 rounded text-white font-semibold" type="submit" value="Logout">
-    </form>
-    <p>This is a blade component! Wow</p>
-    <x-main-button text="My Button" />
+    <h1 class="px-6 py-2 text-4xl font-bold text-green-600">Admin Home</h1>
+
+    <p class="px-6">Create something amazing Please work!</p>
+
+    @include('home.partials.cards')
+
+    <div class="px-6 flex items-center gap-4">
+
+    </div>
 @endsection
