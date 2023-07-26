@@ -5,9 +5,7 @@
 @endsection
 
 @section('content')
-    <h1 class="px-6 py-2 text-4xl font-bold text-green-600">Admin Home</h1>
-
-    <p class="px-6">Create something amazing Please work!</p>
+    <h1 class="px-6 py-2 text-4xl font-bold text-green-600">Home</h1>
 
     @include('home.partials.cards')
 

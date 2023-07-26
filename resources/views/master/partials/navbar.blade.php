@@ -11,8 +11,13 @@
             </button>
         </div>
         <nav class="hidden md:flex md:ml-auto flex-wrap items-center text-base justify-center">
-            <a class="mr-5 hover:text-green-900 cursor-pointer">First Link</a>
-            <a class="mr-5 hover:text-green-900 cursor-pointer">Second Link</a>
+
+            @if (Auth::check())
+                <a class="mr-5 hover:text-green-900 cursor-pointer" href="/user_profile">Welcome
+                    {{ Auth::user()['first_name'] }}
+                    {{ Auth::user()['last_name'] }}
+                </a>
+            @endif
         </nav>
         <form action="{{ url('/logout') }}" method="post">
             @csrf
