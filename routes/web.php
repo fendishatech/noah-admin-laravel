@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Auth Routes.
@@ -17,4 +18,5 @@ Route::post("/logout", [AuthController::class, 'logout']);
 Route::middleware(['loginAuth'])->group(function () {
     // Protected routes here
     Route::get("/home", [HomeController::class, "index"]);
+    Route::resource("/users", UserController::class);
 });
