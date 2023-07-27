@@ -6,6 +6,8 @@
                 <h2 class="text-lg font-medium text-gray-800 ">Users</h2>
             </div>
         </div>
+        <a class="px-6 py-2 text-xl bg-green-300 rounded-md text-white font-semibold hover:bg-green-600"
+            href="{{ url('/users/create') }}">Add New User</a>
     </div>
 
     <div class="mt-6 md:flex md:items-center md:justify-between">

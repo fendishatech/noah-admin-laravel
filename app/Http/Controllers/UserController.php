@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -21,7 +22,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.new');
     }
 
     /**
@@ -29,7 +30,33 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone_no' => ['required', 'string', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'],
+            'avatar' => ['nullable', 'image', 'max:2048'],
+            'user_role' => ['required', 'string', 'in:admin,user,finance'],
+        ]);
+
+        if ($validatedData) {
+
+            $user = new User();
+
+            $user->first_name = $validatedData['first_name'];
+            $user->last_name = $validatedData['last_name'];
+            $user->username = $validatedData['email'];
+            $user->username = $validatedData['phone_no'];
+            $user->password = Hash::make($validatedData['password']);
+            $user->avatar = $validatedData['avtar'] ? $validatedData['avtar'] : asset('images/default-avatar.jpg');
+            $user->username = $validatedData['user_role'];
+            $user->save();
+
+            return redirect('/users')->with('success', 'User added successfully.');
+        } else {
+            return redirect()->back()->withErrors("All fields are required")->withInput();
+        }
     }
 
     /**
