@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
 
 class UserController extends Controller
 {
@@ -36,7 +38,7 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone_no' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
-            'avatar' => ['nullable', 'image', 'max:2048'],
+            'avatar' => ['nullable', 'file', 'mimes:jpeg,jpg,png', 'max:2048'],
             'user_role' => ['required', 'string', 'in:admin,user,finance'],
         ]);
 
@@ -44,13 +46,23 @@ class UserController extends Controller
 
             $user = new User();
 
+            if ($request->hasFile('avatar')) {
+                $image = $request->file('avatar');
+                $filename = Str::lower(pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME) . '-' . uniqid() . '.' . $image->getClientOriginalExtension());
+                $destination = 'images/users';
+                $image->storeAs($destination, $filename, 'local');
+                $user->avatar = $filename;
+            } else {
+                $user->avatar = 'images/users/default-avatar.png'; // Replace with the name of your default avatar image
+            }
+
             $user->first_name = $validatedData['first_name'];
             $user->last_name = $validatedData['last_name'];
-            $user->username = $validatedData['email'];
-            $user->username = $validatedData['phone_no'];
+            $user->email = $validatedData['email'];
+            $user->phone_no = $validatedData['phone_no'];
             $user->password = Hash::make($validatedData['password']);
-            $user->avatar = $validatedData['avtar'] ? $validatedData['avtar'] : asset('images/default-avatar.jpg');
-            $user->username = $validatedData['user_role'];
+
+            $user->user_role = $validatedData['user_role'];
             $user->save();
 
             return redirect('/users')->with('success', 'User added successfully.');
@@ -89,6 +101,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect('users')->with("success", "Item has been deleted");
     }
 }
