@@ -17,7 +17,7 @@
     {{-- @yield('content') --}}
     <div class="flex h-screen">
         <aside class="w-16 sm:w-52 xl:w-64 bg-white text-gray-300 sticky top-0 overflow-y-auto">
-            <x-sidebar title="Hello" />
+            <x-sidebar title="Noah COOP" />
         </aside>
         <div class="flex-1 bg-gray-100 overflow-y-auto">
             {{-- Navbar --}}

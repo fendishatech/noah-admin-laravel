@@ -6,6 +6,8 @@
 @section('content')
     <div class="p-4">
         {{-- Users table --}}
-        @include('users/partials/users_table')
+        <section class="container px-4 mx-auto">
+            @include('users/partials/users_table')
+        </section>
     </div>
 @endsection
