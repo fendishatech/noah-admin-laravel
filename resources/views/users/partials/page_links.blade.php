@@ -1,10 +1,10 @@
 <div class="mt-6 sm:flex sm:items-center sm:justify-between ">
     <div class="text-sm text-gray-500 dark:text-gray-400">
-        Page <span class="font-medium ">1 of 10</span>
+        Page <span class="font-medium ">{{ $users->currentPage() }} of {{ $users->lastPage() }}</span>
     </div>
 
     <div class="flex items-center mt-4 gap-x-4 sm:mt-0">
-        <a href="{{ $previousPageUrl ?? '#' }}"
+        <a href="{{ $users->previousPageUrl() ?? '#' }}"
             class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-300 ">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-5 h-5 rtl:-scale-x-100">
@@ -16,7 +16,7 @@
             </span>
         </a>
 
-        <a href="{{ $nextPageUrl ?? '#' }}"
+        <a href="{{ $users->nextPageUrl() ?? '#' }}"
             class="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md sm:w-auto gap-x-2 hover:bg-gray-300 ">
             <span>
                 Next
